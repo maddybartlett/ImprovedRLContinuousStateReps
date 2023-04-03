@@ -1,0 +1,25 @@
+searchSpace:
+   lr:
+      _type: loguniform
+      _value: [0.001, 0.5]
+   act_dis:
+      _type: uniform
+      _value: [0.8, 1.0]
+   state_dis:
+      _type: uniform
+      _value: [0.8, 1.0]
+   epsilon:
+      _type: uniform
+      _value: [0.3, 0.6]
+      
+experimentName: EXPERIMENT
+trialCommand: python exp_ratbox_discrete12.py
+trialConcurrency: 4
+maxTrialNumber: 100
+maxExperimentDuration: 12h
+tuner:
+   name: Anneal
+   classArgs:
+      optimize_mode: maximize
+trainingService:
+   platform: local
