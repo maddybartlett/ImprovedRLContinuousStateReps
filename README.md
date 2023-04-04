@@ -45,6 +45,8 @@ The experiment and configuration files for these optimization experiments can be
 nnictl create --config CONFIG_FILE.YML
 ```
 
+Make sure to create the data directory and (if necessary) change the `data_dir` variable in each of the *exp* files before running. 
+
 Hyperparameter optimization was performed using the Annealing algorithm and the network was optimized to maximize the reward averaged over the last 100 trials. The maximum number of NNI trials was set to 100. Data was saved in *.txt* format and converted to CSVs and Pickle files for data exploration. 
 
 **10 random seeds**
@@ -63,3 +65,21 @@ The *getBestParams.ipynb* notebook was used to identify the hyperparameters whic
 | scalings of $V$ | $6$ |  |  |  |  |
 | length scale of representation | $91.775829$ |  |  |  |  |
 
+The A2C network using each representation was run 10 times with 10 random seeds and the results collected as npz files and then converted to csv files. 
+
+In order to replicate these experiments you need to use the files in `ratboxExperiments\\run10`. 
+Simply open a command prompt/terminal in that directory and then enter the following, replacing `EXP.PY` with the relevant file name (e.g. `run_ratbox100_discrete6_exp.py`)
+
+```
+python EXP.PY
+```
+
+Make sure to create the data directory and (if necessary) change the `data_dir_` variable in each of these experiment files before running. 
+
+**Changing Agent Speed**
+
+The final stage in these experiments was to change the agent's maximum speed from 10,000 pixels per second (100 pixels per timestep) to 5,000 pixels per second (50 pixels per timestep). The same network configurations were then run 10 times with 10 random seeds. The networks were **not** re-optimized for the new task but maintained the same hyperparameter values as shown in the table above. 
+
+**Data Exploration**
+
+The *exploreData.ipynb* notebook was then used to create plots of the data and provide a descriptive analysis of the results. 
