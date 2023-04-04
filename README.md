@@ -2,4 +2,64 @@
 
 Repository to accompany Bartlett, Simone, Dumont, Furlong, Eliasmith, Orchard & Stewart (2022) "Improving Reinforcement Learning with Biologically Motivated Continuous State Representations" ICCM Paper (LINK).
 
+## Advantage Actor Critic (A2C) Network: 
+
+Across all experiments the same A2C network was used. 
+
 ## Ratbox Experiments
+
+### Task:
+
+**[Ratbox Blocks Environment](https://github.com/maddybartlett/Ratbox)**: Agent has to navigate through a 2D world containing obstacles in order to reach a goal location. Agent starts in the top left-hand corner and the goal is located in the bottom right-hand corner. Agent receives a reward of $100$ for reaching the goal (discounted according to the number of steps the agent took to reach the goal) and a penalty of $-0.5$ whenever it bumps into an obstacle. Agent uses the *compass* steering model. 
+
+In each learning trial or episode the agent has 200 timesteps in which to reach the goal. If the goal is not reached the agent receives a reward of $0$ and is returned to the start location to try again. In all experiments the agent was given 500 learning trials in which to learn to solve the task. 
+
+### Study Design:
+
+$5 \times 2$ study design.
+Comparison of 5 state representation methods (1 continuous and 4 tabular): 
+
+1) Hexagonal Spatial Semantic Pointers (HexSSPs) for continuous space representation
+2) Tabular with 6 bins per dimension
+3) Tabular with 8 bins per dimension
+4) Tabular with 10 bins per dimension
+5) Tabular with 12 bins per dimension 
+
+### Procedure:
+
+**NNI Experiments**
+
+To reproduce the NNI hyperparameter optimization you will need to have NNI version 2.6.1 installed. 
+```
+pip install nni==2.6.1
+```
+
+The first stage of this experiment was to conduct hyperparameter optimisation using Microsoft's [Neural Network Intelligence (NNI)](https://nni.readthedocs.io/en/stable/index.html#). 
+5 separate NNI optimization experiments were run to find the optimal parameters for the network when using each of the 5 representation methods. 
+
+The experiment and configuration files for these optimization experiments can be found in `ratboxExperiments\\nni_exps`. In order to run the NNI optimizations yourself simply download these files, the network folder and the `trial_ratbox.py` file then following these steps:
+
+1) open a command prompt/terminal in the nni_exps directory
+2) enter the following command to start the NNI optimization experiment, replacing `CONFIG_FILE.YML` with the chosen configuration file (e.g. `config_ratbox_discrete6`) 
+```
+nnictl create --config CONFIG_FILE.YML
+```
+
+Hyperparameter optimization was performed using the Annealing algorithm and the network was optimized to maximize the reward averaged over the last 100 trials. The maximum number of NNI trials was set to 100. Data was saved in *.txt* format and converted to CSVs and Pickle files for data exploration. 
+
+**10 random seeds**
+
+The second stage of this study involved running the optimized networks with 10 random seeds in order to assess the network's behaviour when solving the task. 
+The *getBestParams.ipynb* notebook was used to identify the hyperparameters which produced the best performance for each network. One set of hyperparameter values was then chosen from the top 5% of NNI experiments and used for the rest of the experiments. The table below shows the chosen hyperparameter values.
+
+| Parameters | HexSSPs | 6 bins | 8 bins | 10 bins | 12 bins |
+| ---------- | ------- | ------ | ------ | ------- | ------- |
+| learning rate | $0.206206$ | $0.300605$ | $0.247154$ | $0.300605$ | $0.300605$ |
+| action value discount | $0.820566$ | $0.947206$ | $0.949027$ | $0.947206$ | $0.947206$ |
+| state value discount | $0.857552$ | $0.966626$ | $0.841157$ | $0.966626$ | $0.966626$ |
+| epsilon | $0.360414$ | $0.439516$ | $0.580777$ | $0.439516$ | $0.439516$ |
+| proportion of active neurons | $0.156189$ |  |  |  |  |
+| rotations of $V$ | $7$ |  |  |  |  |
+| scalings of $V$ | $6$ |  |  |  |  |
+| length scale of representation | $91.775829$ |  |  |  |  |
+
