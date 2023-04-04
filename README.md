@@ -12,9 +12,9 @@ Across all experiments the same A2C network was used.
 
 The network was written in Python and [Nengo](https://www.nengo.ai/) using the Neural Engineering Framework ([NEF](http://compneuro.uwaterloo.ca/research/nef/overview-of-the-nef.html)). 
 
-It is a shallow, Advantage Actor-Critic network which takes as input the agent's state, most recent action and most recent reward. 
+It is a shallow (single hidden layer), Advantage Actor-Critic network which takes as input the agent's state, most recent action and most recent reward. 
 A single hidden layer is used to contain the state representation. This layer constitutes either a one-hot vector where discrete representations are used, or a population of rectified linear neurons which encode the continuous SSP representation. 
-Temporal Difference (TD) learning rules are implemented as a node within the network and used to update the weights mapping the state representation to the state value (critic) and the policy or action values (actor). 
+[Temporal Difference](http://incompleteideas.net/book/RLbook2020.pdf) (TD) learning rules are implemented as a node within the network and used to update the weights mapping the state representation to the state value (critic) and the policy or action values (actor). 
 
 In these experiments two TD learning rules were used. <br>
 **Ratbox** used am alternative version of TD(0) where the policy was formulated as an isotropic Gaussian distribution over the action vector (`TD0iG`). <br>
