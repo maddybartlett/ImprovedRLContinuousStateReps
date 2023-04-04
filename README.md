@@ -70,7 +70,14 @@ Hyperparameter optimization was performed using the Annealing algorithm and the 
 **10 random seeds**
 
 The second stage of this study involved running the optimized networks with 10 random seeds in order to assess the network's behaviour when solving the task. 
-The *getBestParams.ipynb* notebook was used to identify the hyperparameters which produced the best performance for each network. One set of hyperparameter values was then chosen from the top 5% of NNI experiments and used for the rest of the experiments. The table below shows the chosen hyperparameter values.
+
+Converting the NNI *.txt* data files to *.csvs* or *.pkl* can be done using the cleaning scripts either in jupyter notebook (`cleanNNIData.ipynb`) or from the command prompt/terminal by running:
+
+```
+python clean_nni.py [PATH_TO_DATA] [PATH_TO_SAVE_DIRECTORY]
+```
+
+The *getBestParams.ipynb* notebook can then be used to identify the hyperparameters which produced the best performance for each network. One set of hyperparameter values was chosen from the top 5% of NNI experiments and used for the rest of the experiments. The table below shows the chosen hyperparameter values.
 
 | Parameters | HexSSPs | 6 bins | 8 bins | 10 bins | 12 bins |
 | ---------- | ------- | ------ | ------ | ------- | ------- |
@@ -100,14 +107,10 @@ The final stage in these experiments was to change the agent's maximum speed fro
 
 **Data Exploration**
 
-Converting the NNI *.txt* data files and the 10-seeds *.npz* data files to *.csvs* or *.pkl* can be done using the cleaning scripts either in jupyter notebook (`cleanNNIData.ipynb`, `cleanNPZData.ipynb`) or from the command prompt/terminal by running:
+Converting the 10-seeds *.npz* data files to *.csvs* can be done using the cleaning scripts either in jupyter notebook (`cleanNPZData.ipynb`) or from the command prompt/terminal by running:
 
-```
-python clean_nni.py [PATH_TO_DATA] [PATH_TO_SAVE_DIRECTORY]
-```
-or
 ```
 ```
 Make sure that you navigate to the directory containing these scripts before running them, and that you replace [PATH_TO] with the actual paths to the relevant locations. 
 
-The *exploreData.ipynb* notebook was then used to create plots of the data and provide a descriptive analysis of the results. 
+The *exploreData.ipynb* notebook was can then be used to create plots of the data and provide a descriptive analysis of the results. 
