@@ -12,6 +12,10 @@ Across all experiments the same A2C network was used.
 
 **[Ratbox Blocks Environment](https://github.com/maddybartlett/Ratbox)**: Agent has to navigate through a 2D world containing obstacles in order to reach a goal location. Agent starts in the top left-hand corner and the goal is located in the bottom right-hand corner. Agent receives a reward of $100$ for reaching the goal (discounted according to the number of steps the agent took to reach the goal) and a penalty of $-0.5$ whenever it bumps into an obstacle. Agent uses the *compass* steering model. 
 
+<p align="center">
+<img src="https://github.com/maddybartlett/ImprovedRLContinuousStateReps/blob/main/figures/blocksroom.png" width="300"/>
+</p>
+
 In each learning trial or episode the agent has 200 timesteps in which to reach the goal. If the goal is not reached the agent receives a reward of $0$ and is returned to the start location to try again. In all experiments the agent was given 500 learning trials in which to learn to solve the task. 
 
 ### Study Design:
