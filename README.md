@@ -110,6 +110,7 @@ The final stage in these experiments was to change the agent's maximum speed fro
 Converting the 10-seeds *.npz* data files to *.csvs* can be done using the cleaning scripts either in jupyter notebook (`cleanNPZData.ipynb`) or from the command prompt/terminal by running:
 
 ```
+python clean_npz.py [PATH_TO_DATA] [PATH_TO_SAVE_DIRECTORY]
 ```
 Make sure that you navigate to the directory containing these scripts before running them, and that you replace [PATH_TO] with the actual paths to the relevant locations. 
 
