@@ -113,4 +113,4 @@ Converting the 10-seeds *.npz* data files to *.csvs* can be done using the clean
 ```
 Make sure that you navigate to the directory containing these scripts before running them, and that you replace [PATH_TO] with the actual paths to the relevant locations. 
 
-The *exploreData.ipynb* notebook was can then be used to create plots of the data and provide a descriptive analysis of the results. 
+The *exploreData.ipynb* notebook can then be used to create plots of the data and provide a descriptive analysis of the results. 
