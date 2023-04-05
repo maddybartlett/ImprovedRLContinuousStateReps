@@ -107,7 +107,7 @@ Make sure to create the data directory and (if necessary) change the `data_dir_`
 
 The final stage in these experiments was to change the agent's maximum speed from 10,000 pixels per second (100 pixels per timestep) to 5,000 pixels per second (50 pixels per timestep). The same network configurations were then run 10 times with 10 random seeds. The networks were **not** re-optimized for the new task but maintained the same hyperparameter values as shown in the table above. 
 
-**Data Exploration**
+### Data Exploration:
 
 Converting the 10-seeds *.npz* data files to *.csvs* can be done using the cleaning scripts either in jupyter notebook (`cleanNPZData.ipynb`) or from the command prompt/terminal by running:
 
