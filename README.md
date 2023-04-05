@@ -17,7 +17,7 @@ A single hidden layer is used to contain the state representation. This layer co
 [Temporal Difference](http://incompleteideas.net/book/RLbook2020.pdf) (TD) learning rules are implemented as a node within the network and used to update the weights mapping the state representation to the state value (critic) and the policy or action values (actor). 
 
 In these experiments two TD learning rules were used. <br>
-**Ratbox** used am alternative version of TD(0) where the policy was formulated as an isotropic Gaussian distribution over the action vector (`TD0iG`). <br>
+**Ratbox** used an alternative version of TD(0) where the policy was formulated as an isotropic Gaussian distribution over the action vector (`TD0iG`). <br>
 **CartPole**, in contrast, used the standard TD(0) learning rule. 
 
 ## Ratbox Experiments
@@ -55,7 +55,7 @@ pip install nni==2.6.1
 The first stage of this experiment was to conduct hyperparameter optimisation using Microsoft's [Neural Network Intelligence (NNI)](https://nni.readthedocs.io/en/stable/index.html#). 
 5 separate NNI optimization experiments were run to find the optimal parameters for the network when using each of the 5 representation methods. 
 
-The experiment and configuration files for these optimization experiments can be found in `ratboxExperiments\\nni_exps`. In order to run the NNI optimizations yourself simply download these files, the network folder and the `trial_ratbox.py` file then following these steps:
+The experiment and configuration files for these optimization experiments can be found in `ratboxExperiments/nni_exps`. In order to run the NNI optimizations yourself simply download these files, the network folder and the `trial_ratbox.py` file then following these steps:
 
 1) open a command prompt/terminal in the nni_exps directory
 2) enter the following command to start the NNI optimization experiment, replacing `CONFIG_FILE.YML` with the chosen configuration file (e.g. `config_ratbox_discrete6`) 
@@ -92,7 +92,7 @@ The *getBestParams.ipynb* notebook can then be used to identify the hyperparamet
 
 The A2C network using each representation was run 10 times with 10 random seeds and the results collected as npz files and then converted to csv files. 
 
-In order to replicate these experiments you need to use the files in `ratboxExperiments\\run10`. 
+In order to replicate these experiments you need to use the files in `ratboxExperiments/run10`. 
 Simply open a command prompt/terminal in that directory and then enter the following, replacing `EXP.PY` with the relevant file name (e.g. `run_ratbox100_discrete6_exp.py`)
 
 ```
