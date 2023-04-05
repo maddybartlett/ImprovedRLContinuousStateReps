@@ -29,7 +29,7 @@ for seed in tqdm(seeds):
                      n_rotates=7,
                      n_scales=6,
                      length_scale=91.775829,
-                     rule="TD0n",
+                     rule="TD0iG",
                      eps=0.360414,
                      dynamic_epsilon=True,
                      lr=0.206206, 

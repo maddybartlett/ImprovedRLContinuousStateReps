@@ -28,7 +28,7 @@ for seed in tqdm(seeds):
                      gifs=False,
                      rep="OneHot",
                      rep_ranges=(10,10,10),
-                     rule="TD0n",
+                     rule="TD0iG",
                      eps=0.439516,
                      dynamic_epsilon=True,
                      lr=0.300605, 
