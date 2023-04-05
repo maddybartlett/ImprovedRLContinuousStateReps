@@ -14,4 +14,4 @@ pytz==2021.3
 scipy==1.7.3
 seaborn==0.11.2
 tqdm==4.64.0
-ratbox==0.0.1
+ratbox==1.0.0
