@@ -2,6 +2,8 @@
 
 Repository to accompany [Bartlett, Simone, Dumont, Furlong, Eliasmith, Orchard & Stewart (2022)]() "Improving Reinforcement Learning with Biologically Motivated Continuous State Representations" ICCM Paper.
 
+**Note: Make sure to import all dependencies listed in the *requirements.txt* file
+
 ## Advantage Actor Critic (A2C) Network: 
 
 Across all experiments the same A2C network was used. 
