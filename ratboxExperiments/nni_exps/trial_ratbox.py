@@ -5,7 +5,7 @@ import pandas as pd
 import random
 
 import sys
-sys.path.insert(0, '..\\network')
+sys.path.insert(0, '..\\..\\network')
 
 import rlnet as net
 from rlnet.utils import softmax, rend, save_gifs, get_ac_output, next_power_of_2
