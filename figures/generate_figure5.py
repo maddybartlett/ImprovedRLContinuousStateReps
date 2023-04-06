@@ -84,6 +84,6 @@ for ax in (ax1,ax2):
         ax.spines[spine].set_visible(False)
 
 fig.tight_layout()
-fig.savefig('../figure5_cartpole_discrete_vs_hex.pdf', bbox_inches='tight')
+fig.savefig('figure5_cartpole_discrete_vs_hex.pdf', bbox_inches='tight')
 
 plt.show()
