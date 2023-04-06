@@ -1,0 +1,19 @@
+searchSpace:
+    epsilon:
+        _type: uniform
+        _value: [0.2, 0.6]
+    lr:
+        _type: uniform
+        _value: [0.001, 0.5]
+
+experimentName: EXPERIMENT
+trialCommand: python exp_cartpole_discrete.py
+trialConcurrency: 2
+maxTrialNumber: 100
+maxExperimentDuration: 3h
+tuner:
+    name: Anneal
+    classArgs:
+        optimize_mode: maximize
+trainingService:
+    platform: local

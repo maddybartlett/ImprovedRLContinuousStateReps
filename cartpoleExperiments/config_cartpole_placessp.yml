@@ -1,0 +1,31 @@
+searchSpace:
+    length_scale:
+        _type: uniform
+        _value: [0.01, 1.0]
+    n_rotates: 
+        _type: choice
+        _value: [4, 5, 6, 7]       
+    n_neurons: 
+        _type: choice
+        _value: [1024, 2048, 4096] 
+    active_prop:
+        _type: uniform
+        _value: [0.001, 0.5]
+    epsilon:
+        _type: uniform
+        _value: [0.2, 0.6]
+    lr:
+        _type: uniform
+        _value: [0.001, 0.5]
+      
+experimentName: EXPERIMENT
+trialCommand: python exp_cartpole_placessp.py
+trialConcurrency: 2
+maxTrialNumber: 100
+maxExperimentDuration: 5h
+tuner:
+    name: Anneal
+    classArgs:
+        optimize_mode: maximize
+trainingService:
+    platform: local
