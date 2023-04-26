@@ -119,7 +119,7 @@ class ACTrial(pytry.Trial):
             rep.ranges = rep.upper - rep.lower
             state_size = rep.size_out
         elif param.rep_ == 'Discrete':
-            rep = net.representations.OneHotRep( (param.n_bins,param.n_bins,param.n_bins,param.n_bins) )
+            rep = net.representations.OneHotRepCP( (param.n_bins,param.n_bins,param.n_bins,param.n_bins))
             state_size = rep.size_out
         
         ## Rule Parameters
@@ -194,7 +194,7 @@ class ACTrial(pytry.Trial):
         vdata = {}      # values    
         adata = {}      # actions
         
-        self.data_dir = os.path.join(os.path.dirname(__file__),param.data_dir,'data',param.data_filename,'./')
+        self.data_dir = os.path.join(os.path.dirname(__file__),param.data_dir, param.data_filename,'./')
         
         trials_start = time.time()
         for trial in tqdm(range(trials)):

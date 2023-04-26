@@ -78,7 +78,7 @@ class ACTrial(pytry.Trial):
         if param.rep == "HexSSP":
             self.rep=net.representations.SSPRep(3, n_scales=param.n_scales, n_rotates=param.n_rotates, length_scale=param.length_scale)
         elif param.rep == "OneHot":
-            self.rep=net.representations.OneHotRep(param.rep_ranges)
+            self.rep=net.representations.OneHotRepRB(param.rep_ranges)
        
         
         ## Rule Parameters
