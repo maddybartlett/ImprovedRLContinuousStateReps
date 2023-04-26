@@ -4,6 +4,17 @@ Repository to accompany [Bartlett, Simone, Dumont, Furlong, Eliasmith, Orchard &
 
 **Note: Make sure to import all dependencies listed in the *requirements.txt* file**
 
+## TLDR
+
+* NNI and *.yml files to run hyperparameter optimizations: `nnictl create --config CONFIG_FILE.YML`
+* `getBestParams.ipynb` reports the best parameters found for RatBox
+* *exp.py files in `ratboxExperiments/run10` run RatBox experiments with 10 random seeds and saves results
+* `exploreData.ipynb` generates plots and results
+* *CartPole run 10*
+* *CartPole results*
+* `a2c_baseline_cartpole.py` runs the baseline model on CartPole and saves the results
+* `plot_cartpole.py` makes comparison plots and reports statistics
+
 ## Advantage Actor Critic (A2C) Network: 
 
 Across all experiments the same A2C network was used. 
