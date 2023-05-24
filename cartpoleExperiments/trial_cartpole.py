@@ -12,7 +12,7 @@ import time
 
 import sys,os
 
-sys.path.append(os.path.join(os.path.dirname(__file__),'../network'))
+sys.path.insert(0,os.path.join(os.path.dirname(__file__),'../network'))
 from rlnet.utils import softmax, rend, save_gifs, next_power_of_2
 import rlnet as net
 

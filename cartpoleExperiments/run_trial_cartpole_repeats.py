@@ -12,7 +12,7 @@ trials = 1000
 learnTrials = trials
 ac = ACTrial()
 
-data_dir_ = '../../data-ks/iccm23-git'
+data_dir_ = '../../all-experiments/cartpole/data-raw/cartpole-debug'
 
 for i in range(10):
 
@@ -56,21 +56,21 @@ for i in range(10):
                 # lr = 0.264277,                               # from NNI   
 
                 # Uncomment next 4 lines for Discrete rep, 19 bins
-                # rep_ = 'Discrete',
-                # n_bins = 19,
-                # eps = 0.259453,                              # from NNI
-                # lr = 0.283112,                               # from NNI   
+                rep_ = 'Discrete',
+                n_bins = 19,
+                eps = 0.259453,                              # from NNI
+                lr = 0.283112,                               # from NNI   
                 
                 # Uncomment next 9 lines for HexSSP rep
-                rep_ = 'PlaceSSP',                             # todo -- fix this in the trial file
-                specify_encoder_samples = False,
-                neuron_type = nengo.RectifiedLinear(),
-                length_scale = 0.527579,                       # from NNI
-                n_rotates = 7,                                 # from NNI
-                state_neurons = 4096,                          # from NNI
-                active_prop = 0.242728,                        # from NNI
-                eps = 0.221581,                                # from NNI
-                lr = 0.195843,                                 # from NNI
+                # rep_ = 'PlaceSSP',                             # todo -- fix this in the trial file
+                # specify_encoder_samples = False,
+                # neuron_type = nengo.RectifiedLinear(),
+                # length_scale = 0.527579,                       # from NNI
+                # n_rotates = 7,                                 # from NNI
+                # state_neurons = 4096,                          # from NNI
+                # active_prop = 0.242728,                        # from NNI
+                # eps = 0.221581,                                # from NNI
+                # lr = 0.195843,                                 # from NNI
                 
                 ###
                 

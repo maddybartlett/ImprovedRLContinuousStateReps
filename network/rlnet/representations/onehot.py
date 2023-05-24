@@ -41,8 +41,6 @@ class OneHotRepRB(object):
         
         return discrete_state
     
-    
-    
 class OneHotRepCP(object):
     '''Create one-hot representation. I.e. the state is represented as a list of 0's and a 1. 
     This method works with CartPole v1.
@@ -69,22 +67,18 @@ class OneHotRepCP(object):
         return self.result    
     
     def get_state(self, state, env=None):       
+        
         discrete_state = state
-    
-        low = env.observation_space.low
-        low[1] = -10            # cart velocity and pole angular velocity are otherwise (-inf,inf)
-        low[3] = -10
-    
-        high = env.observation_space.high
-        high[1] = 10
-        high[3] = 10
+
+        state_space_low = env.observation_space.low
+        state_space_high = env.observation_space.high
         
-        discrete_obs_size = np.array(self.ranges, dtype='int')
-        discrete_obs_win_size = (high - low)/discrete_obs_size
+        discrete_obs_size = np.array(self.ranges)
         
-        discrete_state = (state - low)/discrete_obs_win_size
+        discrete_obs_size = np.array(discrete_obs_size, dtype = 'int')
+        discrete_obs_win_size = (state_space_high - state_space_low) / discrete_obs_size
         
-        discrete_state = tuple(discrete_state.astype(np.int))
-            
+        discrete_state = (state - state_space_low)/discrete_obs_win_size
+        discrete_state = tuple(discrete_state.astype(int))
         
         return discrete_state
