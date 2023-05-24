@@ -72,47 +72,46 @@ COLORS = ['#ffdcc0', '#eaef98', '#97e074', '#54d078', '#37c1b4', '#1e64b1',
 
 ### Compare Performance with HexSSP vs Discrete Representation
 mean_rollmean_discrete6100 = np.vstack(df_discrete6100['roll_mean'])[:,99:].mean(axis=0)
-x = np.vstack(df_discrete6100['roll_mean'])[:,99:]
-idr_90_discrete6100 = np.percentile(x, 90, axis=0)
-idr_10_discrete6100 = np.percentile(x, 10, axis=0)
+sem_rollmean_discrete6100 = np.vstack(df_discrete6100['roll_mean'])[:,99:].std(axis=0,ddof=1)
 
 mean_rollmean_discrete8100 = np.vstack(df_discrete8100['roll_mean'])[:,99:].mean(axis=0)
-x = np.vstack(df_discrete8100['roll_mean'])[:,99:]
-idr_90_discrete8100 = np.percentile(x, 90, axis=0)
-idr_10_discrete8100 = np.percentile(x, 10, axis=0)
+sem_rollmean_discrete8100 = np.vstack(df_discrete8100['roll_mean'])[:,99:].std(axis=0,ddof=1)
 
 mean_rollmean_discrete10100 = np.vstack(df_discrete10100['roll_mean'])[:,99:].mean(axis=0)
-x = np.vstack(df_discrete10100['roll_mean'])[:,99:]
-idr_90_discrete10100 = np.percentile(x, 90, axis=0)
-idr_10_discrete10100 = np.percentile(x, 10, axis=0)
+sem_rollmean_discrete10100 = np.vstack(df_discrete10100['roll_mean'])[:,99:].std(axis=0,ddof=1)
 
 mean_rollmean_discrete12100 = np.vstack(df_discrete12100['roll_mean'])[:,99:].mean(axis=0)
-x = np.vstack(df_discrete12100['roll_mean'])[:,99:]
-idr_90_discrete12100 = np.percentile(x, 90, axis=0)
-idr_10_discrete12100 = np.percentile(x, 10, axis=0)
+sem_rollmean_discrete12100 = np.vstack(df_discrete12100['roll_mean'])[:,99:].std(axis=0,ddof=1)
 
 mean_rollmean_hex100 = np.vstack(df_hex100['roll_mean'])[:,99:].mean(axis=0)
-x = np.vstack(df_hex100['roll_mean'])[:,99:]
-idr_90_hex100 = np.percentile(x, 90, axis=0)
-idr_10_hex100 = np.percentile(x, 10, axis=0)
+sem_rollmean_hex100 = np.vstack(df_hex100['roll_mean'])[:,99:].std(axis=0,ddof=1)
 
 figsize_ = (8,4.3)
 
 fig,(ax1,ax2) = plt.subplots(1,2,figsize = figsize_)
 
 ax1.plot(mean_rollmean_discrete6100, label='6 bins', color=COLORS[0], linewidth=2.5)
-ax1.fill_between(np.arange(0,401), idr_90_discrete6100, idr_10_discrete6100, alpha=0.3, color=COLORS[0])
-ax1.plot(mean_rollmean_discrete8100, label='8 bins', color=COLORS[2], linewidth=2.5)
-ax1.fill_between(np.arange(0,401), idr_90_discrete8100, idr_10_discrete8100, alpha=0.3, color=COLORS[2])
-ax1.plot(mean_rollmean_discrete10100, label='10 bins', color=COLORS[4], linewidth=2.5)
-ax1.fill_between(np.arange(0,401), idr_90_discrete10100, idr_10_discrete10100, alpha=0.3, color=COLORS[4])
-ax1.plot(mean_rollmean_discrete12100, label='12 bins', color=COLORS[6], linewidth=2.5)
-ax1.fill_between(np.arange(0,401), idr_90_discrete12100, idr_10_discrete12100, alpha=0.3, color=COLORS[6])
-ax1.plot(mean_rollmean_hex100, label='Hex SSP', color=COLORS[8], linewidth=2.5)
-ax1.fill_between(np.arange(0,401), idr_90_hex100, idr_10_hex100, alpha=0.3, color=COLORS[8])
+#ax1.fill_between(np.arange(0,401), idr_90_discrete6100, idr_10_discrete6100, alpha=0.3, color=COLORS[0])
+ax1.fill_between(np.arange(0,401), mean_rollmean_discrete6100-sem_rollmean_discrete6100, mean_rollmean_discrete6100+sem_rollmean_discrete6100,alpha=0.3, color=COLORS[0])
 
-ax1.set_ylabel('Average Rolling Mean Reward', fontsize=axisLabelSize)
-ax1.set_xlabel('Episode', fontsize=axisLabelSize)
+ax1.plot(mean_rollmean_discrete8100, label='8 bins', color=COLORS[2], linewidth=2.5)
+#ax1.fill_between(np.arange(0,401), idr_90_discrete8100, idr_10_discrete8100, alpha=0.3, color=COLORS[2])
+ax1.fill_between(np.arange(0,401), mean_rollmean_discrete8100-sem_rollmean_discrete8100, mean_rollmean_discrete8100+sem_rollmean_discrete8100,alpha=0.3, color=COLORS[2])
+
+ax1.plot(mean_rollmean_discrete10100, label='10 bins', color=COLORS[4], linewidth=2.5)
+#ax1.fill_between(np.arange(0,401), idr_90_discrete10100, idr_10_discrete10100, alpha=0.3, color=COLORS[4])
+ax1.fill_between(np.arange(0,401), mean_rollmean_discrete10100-sem_rollmean_discrete10100, mean_rollmean_discrete10100+sem_rollmean_discrete10100,alpha=0.3, color=COLORS[4])
+
+ax1.plot(mean_rollmean_discrete12100, label='12 bins', color=COLORS[6], linewidth=2.5)
+#ax1.fill_between(np.arange(0,401), idr_90_discrete12100, idr_10_discrete12100, alpha=0.3, color=COLORS[6])
+ax1.fill_between(np.arange(0,401), mean_rollmean_discrete12100-sem_rollmean_discrete12100, mean_rollmean_discrete12100+sem_rollmean_discrete12100,alpha=0.3, color=COLORS[6])
+
+ax1.plot(mean_rollmean_hex100, label='Hex SSP', color=COLORS[8], linewidth=2.5)
+#ax1.fill_between(np.arange(0,401), idr_90_hex100, idr_10_hex100, alpha=0.3, color=COLORS[8])
+ax1.fill_between(np.arange(0,401), mean_rollmean_hex100-sem_rollmean_hex100, mean_rollmean_hex100+sem_rollmean_hex100,alpha=0.3, color=COLORS[8])
+
+ax1.set_ylabel('Rolling Mean Reward', fontsize=axisLabelSize)
+ax1.set_xlabel(r'Episodes $\to$', fontsize=axisLabelSize)
 ax1.tick_params(labelsize=tickSize)
 
 #plt.legend(bbox_to_anchor=(1.25, 0.0),title='Representation', title_fontsize=legendtitleSize, 

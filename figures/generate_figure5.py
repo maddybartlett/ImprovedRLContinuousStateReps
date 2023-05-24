@@ -33,8 +33,12 @@ for rep in sorted( set([c.split('-')[0] for c in df.columns]) ):
         n_bins = int(rep_info[-1])
         label_ = '{} bins'.format(n_bins)
         color_ = discr_colors[n_bins]
-        
-    ax1.plot(df.index,df[rep_cols].rolling(100,min_periods=0).mean().mean(axis=1),label = label_,color = color_,linewidth=2.5)
+    
+    roll_mean = df[rep_cols].rolling(100,min_periods=0).mean().mean(axis=1)
+    roll_sem = df[rep_cols].rolling(100,min_periods=0).mean().sem(axis=1)
+    ax1.plot(df.index,roll_mean,label = label_,color = color_,linewidth=2.5)
+    ax1.fill_between(df.index,roll_mean-roll_sem,roll_mean+roll_sem,color = color_,alpha=.3)
+    
 ax1.axhline(500,color='k',linestyle='--')
 ax1.xaxis.set_ticks_position('none')
 ax1.yaxis.set_ticks_position('none')
