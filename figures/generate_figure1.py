@@ -1,4 +1,3 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -41,12 +40,11 @@ def similarity_plot(basis, xs, ys, x=0, y=0, S_list = None, S0 = None, check_mar
     if axis is None:
         fig = plt.figure()
         axis = fig.add_subplot(111)
-    
-    im=axis.pcolormesh(xx, yy, sim_dots.reshape(xx.shape).real, cmap=cmap,**kwargs)
+    #pcolormesh
+    im=axis.contourf(xx, yy, sim_dots.reshape(xx.shape).real, cmap=cmap,**kwargs)
     if check_mark:
         axis.plot(x,y, 'k+')
     return im,sim_dots, S_list 
-    
 def _similarity_values(basis, positions, position0 = None, S0 = None, S_list = None):
     if position0 is None:
         position0 = np.zeros(basis.shape[1])
@@ -56,56 +54,61 @@ def _similarity_values(basis, positions, position0 = None, S0 = None, S_list = N
         S_list = ssp_vectorized(basis, positions)
     sim_dots = S_list.T @ S0
     return(sim_dots, S_list)
-
-cmap = sns.cubehelix_palette(start=.5, rot=-.5, as_cmap=True)
+    
+cmap = sns.light_palette("#5dade2", as_cmap=True)#sns.color_palette("crest", as_cmap=True)#sns.cubehelix_palette(start=.5, rot=-.5, as_cmap=True)
 
 xs = np.linspace(-5,5,100)
 ys = xs
 
-i = 3*10
+i = 30
 sub_mat = _get_sub_SSP(i,(d-1)//2,sublen=1)
 proj_mat = _proj_sub_SSP(i,(d-1)//2,sublen=1)
 basis_i = sub_mat @ basis
 
-fig = plt.figure(figsize=(7.,2.))
+fig = plt.figure(figsize=(7,2))
 gs = fig.add_gridspec(1,3,wspace=0.2,width_ratios=[3.5/4,3.5/4,1])
 ax1 = plt.subplot(gs[:,0])
 ax2 = plt.subplot(gs[:,1])
 ax3 = plt.subplot(gs[:,2])
 
-similarity_plot(basis_i,xs,ys,cmap=cmap,axis=ax1);
-ax1.quiver(0, 0, K[i,0], K[i,1], angles='xy', scale_units='xy', scale=1,color='white')
+
+similarity_plot(basis_i,xs,ys,cmap=cmap,axis=ax1, vmin=0, vmax=1);
+ax1.quiver(0, 0, np.fft.fftshift(K,axes=0)[i,0], np.fft.fftshift(K,axes=0)[i,1], 
+           angles='xy', scale_units='xy', scale=1,color='black')
 ax1.axis(xmin=-5,ymin=-5,xmax=5,ymax=5)
-ax1.text(K[i,0]+0.2, K[i,1]+0.2, '$\\theta_1$',color='white')
+ax1.text(K[i,0]+0.2, K[i,1]+0.2, '$\\theta_1$',color='black')
 ax1.set_xlabel('$x$')
 ax1.set_ylabel('$y$')
 ax1.set_title('$S(\mathbf{x}) = \mathcal{F}^{-1}\{ e^{i \\theta_1^T\mathbf{x}} \}$')
+
 
 i = 10
 sub_mat = _get_sub_SSP(i,N,sublen=3)
 proj_mat = _proj_sub_SSP(i,N,sublen=3)
 basis_i = sub_mat @ basis
-similarity_plot(basis_i,xs,ys,cmap=cmap,axis=ax2);
-ax2.quiver(np.zeros(3), np.zeros(3), K[3*i:3*(i+1),0], K[3*i:3*(i+1),1], angles='xy', scale_units='xy', scale=1,color='white')
+similarity_plot(basis_i,xs,ys,cmap=cmap,axis=ax2, vmin=0, vmax=1);
+ax2.quiver(np.zeros(3), np.zeros(3), K[3*i:3*(i+1),0], K[3*i:3*(i+1),1], angles='xy', 
+           scale_units='xy', scale=1,color='black')
 ax2.axis(xmin=-5,ymin=-5,xmax=5,ymax=5)
 for j in range(3):
-    ax2.text(K[3*i + j,0]+0.2, K[3*i + j,1]+0.2, '$\\theta_' + str(j+1) + '$',color='white')
+    ax2.text(K[3*i + j,0]+0.2, K[3*i + j,1]+0.2, '$\\theta_' + str(j+1) + '$',color='black')
 ax2.set_xlabel('$x$')
 ax2.set_title('$S(\mathbf{x}) = \mathcal{F}^{-1} \{ e^{i   [ \\theta_1 \, \\theta_2 \, \\theta_3 ]^T \mathbf{x}}  \}$')
 
-heatmap, _, _ = similarity_plot(basis,xs,ys,cmap=cmap,axis=ax3)
-ax3.quiver(np.zeros(K.shape[0]), np.zeros(K.shape[0]), K[:,0], K[:,1], angles='xy', scale_units='xy', scale=1,color='white')
-ax3.text(np.max(K[:,0]), np.max(K[:,1]), '$\Theta$',color='white')
+
+heatmap, _, _ = similarity_plot(basis,xs,ys,cmap=cmap,axis=ax3, vmin=0, vmax=1)
+ax3.quiver(np.zeros(K.shape[0]), np.zeros(K.shape[0]), K[:,0], K[:,1], 
+           angles='xy', scale_units='xy', scale=1,color='black')
+ax3.text(np.max(K[:,0]), np.max(K[:,1]), '$\Theta$',color='black')
 ax3.axis(xmin=-5,ymin=-5,xmax=5,ymax=5)
 ax3.set_xlabel('$x$')
 ax3.set_title('$S(\mathbf{x}) = \mathcal{F}^{-1}\{ e^{i\Theta\mathbf{x}}\}$')
 
-cbar = plt.colorbar(heatmap,ax=ax3)
+cbar = plt.colorbar(heatmap,ax=ax3, ticks=np.linspace(0, 1, 3))
 cbar.ticklocation='right'
 
 cbar.set_label('Similarity', rotation=270, labelpad=15)
 cbar.draw_all()
 
 plt.savefig('figure1_hexssp_encoding.pdf',format='pdf')
-
 plt.show()
