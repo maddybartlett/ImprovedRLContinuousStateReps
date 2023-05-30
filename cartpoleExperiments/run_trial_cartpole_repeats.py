@@ -12,7 +12,7 @@ trials = 1000
 learnTrials = trials
 ac = ACTrial()
 
-data_dir_ = '../../all-experiments/cartpole/data-raw/cartpole-debug'
+data_dir_ = '../cartpoleData/raw'
 
 for i in range(10):
 
@@ -31,25 +31,25 @@ for i in range(10):
                 
                 ### model-specific parameters ###
                 
-                # Uncomment  next 4 lines for Discrete rep, 3 bins
+                ## Uncomment  next 4 lines for Discrete rep, 3 bins
                 # rep_ = 'Discrete',
                 # n_bins = 3,
                 # eps = 0.556489,                              # from NNI
                 # lr = 0.208818,                               # from NNI
                 
-                # Uncomment next 4 lines for Discrete rep, 7 bins
+                ## Uncomment next 4 lines for Discrete rep, 7 bins
                 # rep_ = 'Discrete',
                 # n_bins = 7,
                 # eps = 0.307233,                              # from NNI
                 # lr = 0.170501,                               # from NNI
 
-                # Uncomment next 4 lines for Discrete rep, 11 bins
+                ## Uncomment next 4 lines for Discrete rep, 11 bins
                 # rep_ = 'Discrete',
                 # n_bins = 11,
                 # eps = 0.448556,                              # from NNI
                 # lr = 0.085822,                               # from NNI                
 
-                # Uncomment next 4 lines for Discrete rep, 15 bins
+                ## Uncomment next 4 lines for Discrete rep, 15 bins
                 # rep_ = 'Discrete',
                 # n_bins = 15,
                 # eps = 0.293466,                              # from NNI
@@ -61,7 +61,7 @@ for i in range(10):
                 eps = 0.259453,                              # from NNI
                 lr = 0.283112,                               # from NNI   
                 
-                # Uncomment next 9 lines for HexSSP rep
+                ## Uncomment next 9 lines for HexSSP rep
                 # rep_ = 'PlaceSSP',                             # todo -- fix this in the trial file
                 # specify_encoder_samples = False,
                 # neuron_type = nengo.RectifiedLinear(),

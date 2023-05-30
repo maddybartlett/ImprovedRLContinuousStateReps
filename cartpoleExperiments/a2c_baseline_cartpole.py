@@ -53,7 +53,7 @@ for seed in seeds:
     y_s.append(y_ma)
 
 
-np.save('../cartpoleData/baseline_num_timesteps.npy', np.array(x_s, dtype=object), allow_pickle=True)
-np.save('../cartpoleData/baseline_rewards.npy', np.array(y_s, dtype=object), allow_pickle=True)
+np.save('../cartpoleData/baseline-comparison/baseline_num_timesteps.npy', np.array(x_s, dtype=object), allow_pickle=True)
+np.save('../cartpoleData/baseline-comparison/baseline_rewards.npy', np.array(y_s, dtype=object), allow_pickle=True)
 
 
