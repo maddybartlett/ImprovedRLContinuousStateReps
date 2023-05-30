@@ -69,22 +69,22 @@ legendSize=12
 COLORS = ['#ffdcc0', '#eaef98', '#97e074', '#54d078', '#37c1b4', '#1e64b1',
           '#1e08a2', '#6e0092', '#820052', '#730002']
 
-
+import scipy
 ### Compare Performance with HexSSP vs Discrete Representation
 mean_rollmean_discrete6100 = np.vstack(df_discrete6100['roll_mean'])[:,99:].mean(axis=0)
-sem_rollmean_discrete6100 = np.vstack(df_discrete6100['roll_mean'])[:,99:].std(axis=0,ddof=1)
+sem_rollmean_discrete6100 = scipy.stats.sem( np.vstack(df_discrete6100['roll_mean'])[:,99:], axis=0, ddof=1)
 
 mean_rollmean_discrete8100 = np.vstack(df_discrete8100['roll_mean'])[:,99:].mean(axis=0)
-sem_rollmean_discrete8100 = np.vstack(df_discrete8100['roll_mean'])[:,99:].std(axis=0,ddof=1)
+sem_rollmean_discrete8100 = scipy.stats.sem( np.vstack(df_discrete8100['roll_mean'])[:,99:], axis=0, ddof=1)
 
 mean_rollmean_discrete10100 = np.vstack(df_discrete10100['roll_mean'])[:,99:].mean(axis=0)
-sem_rollmean_discrete10100 = np.vstack(df_discrete10100['roll_mean'])[:,99:].std(axis=0,ddof=1)
+sem_rollmean_discrete10100 = scipy.stats.sem( np.vstack(df_discrete10100['roll_mean'])[:,99:], axis=0, ddof=1)
 
 mean_rollmean_discrete12100 = np.vstack(df_discrete12100['roll_mean'])[:,99:].mean(axis=0)
-sem_rollmean_discrete12100 = np.vstack(df_discrete12100['roll_mean'])[:,99:].std(axis=0,ddof=1)
+sem_rollmean_discrete12100 = scipy.stats.sem( np.vstack(df_discrete12100['roll_mean'])[:,99:], axis=0, ddof=1)
 
 mean_rollmean_hex100 = np.vstack(df_hex100['roll_mean'])[:,99:].mean(axis=0)
-sem_rollmean_hex100 = np.vstack(df_hex100['roll_mean'])[:,99:].std(axis=0,ddof=1)
+sem_rollmean_hex100 = scipy.stats.sem( np.vstack(df_hex100['roll_mean'])[:,99:], axis=0, ddof=1)
 
 figsize_ = (8,4.3)
 
