@@ -2,9 +2,9 @@
 
 Repository to accompany [Bartlett, Simone, Dumont, Furlong, Eliasmith, Orchard & Stewart (2022)]() "Improving Reinforcement Learning with Biologically Motivated Continuous State Representations" ICCM Paper.
 
-**Note: Make sure to import all dependencies listed in the *requirements.txt* file**
+## Reproducing results and figures
 
-## TLDR
+**Note: Make sure to import all dependencies listed in the *requirements.txt* file**
 
 Hyperparameter optimization
 * To run hyperparameter optimization for a given network architecture, do: `nnictl create --config [CONFIG_FILENAME].YML`
@@ -139,12 +139,3 @@ python clean_npz.py [PATH_TO_DATA] [PATH_TO_SAVE_DIRECTORY]
 Make sure that you navigate to the directory containing these scripts before running them, and that you replace [PATH_TO] with the actual paths to the relevant locations. 
 
 The *exploreData.ipynb* notebook can then be used to create plots of the data and provide a descriptive analysis of the results. 
-
-## Reproducing results on the CartPole task
-
-to do:
-
-- [ ] Check behavior w/ discrete models & make any necessary network modifications
-- [ ] Add Nicole's baseline data, plotting scripts + functions for baseline comparison
-- [ ] List packages & versions needed to run these experiments (nni==2.6.1, etc)
-- [ ] Add brief descriptions for running NNI, runs w/ diff seeds, processing data, plotting the data
