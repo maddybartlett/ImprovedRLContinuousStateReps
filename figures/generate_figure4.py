@@ -137,27 +137,27 @@ combined_all = pd.DataFrame({'terminal reward': np.hstack(term_rew),
                             'pixels per sec': np.hstack(speed)})
 
 
-# Plot the results as a point plot with confidence intervals as error bars
+# Plot the results as a point plot with standard error of the mean as error bars
 # fig, ax1 = plt.subplots(1, 1, figsize=(5,4))
+
+
 
 sns.set_style('white')
 sns.pointplot(data=combined_all, x='representation', y='terminal reward', hue="pixels per sec", 
-              ci=95, palette=[COLORS[8], COLORS[5]], join=False)
+              errorbar="se", palette=[COLORS[8], COLORS[5]], join=False)
 sns.despine()
 
 mu_hex100 = np.vstack(df_hex100['episodes']).mean(axis=0)[-1]
-sigma_hex100 = np.vstack(df_hex100['episodes']).std(axis=0)[-1]
-ci_hex100 = stats.norm.interval(0.95, loc=mu_hex100, scale=sigma_hex100)
+sem_hex100 = stats.sem(np.vstack(df_hex100['episodes']), axis=0)[-1]
 
 mu_hex50 = np.vstack(df_hex50['episodes']).mean(axis=0)[-1]
-sigma_hex50 = np.vstack(df_hex50['episodes']).std(axis=0)[-1]
-ci_hex50 = stats.norm.interval(0.95, loc=mu_hex50, scale=sigma_hex50)
+sem_hex50 = stats.sem(np.vstack(df_hex50['episodes']), axis=0)[-1]
 
 l1 = ax2.axhline(y=mu_hex100, color=COLORS[8], linestyle='-', linewidth=2.5)
-plt.fill_between(np.arange(-.5,4.5), ci_hex100[0], ci_hex100[1], alpha=0.3, color=COLORS[8])
+plt.fill_between(np.arange(-.5,4.5), mu_hex100-sem_hex100, mu_hex100+sem_hex100, alpha=0.3, color=COLORS[8])
 
 l2 = ax2.axhline(y=mu_hex50, color=COLORS[5], linestyle='-', linewidth=2.5)
-plt.fill_between(np.arange(-.5,4.5), ci_hex50[0], ci_hex50[1], alpha=0.3, color=COLORS[5])
+plt.fill_between(np.arange(-.5,4.5), mu_hex50-sem_hex50, mu_hex50+sem_hex50, alpha=0.3, color=COLORS[5])
 
 ax2.set_ylabel('Terminal Reward', fontsize=axisLabelSize)
 ax2.set_xlabel('Discretization (# bins per state)', fontsize=axisLabelSize)
